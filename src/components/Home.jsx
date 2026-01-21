@@ -1,4 +1,6 @@
+import products from "../data/products.js";
 import PageHeading from "./PageHeading.jsx";
+import ProductListings from "./ProductListings.jsx";
 
 const Home = () => {
   return (
@@ -9,6 +11,7 @@ const Home = () => {
         fan art, and limited editions so you can literally touch your favorite
         universes.
       </PageHeading>
+      <ProductListings products={products} />
     </div>
   );
 }
