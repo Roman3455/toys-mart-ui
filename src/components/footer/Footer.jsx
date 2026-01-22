@@ -11,8 +11,12 @@ const Footer = () => {
         className="footer-icon"
         aria-hidden="true"
       />
-       by
-      <a href="https://github.com/Roman3455" target="_blank" rel="noreferrer">@Roman3455</a>
+      by
+      <a
+        href="https://github.com/Roman3455"
+        target="_blank"
+        rel="noreferrer"
+      >@Roman3455</a>
     </footer>
   );
 }
