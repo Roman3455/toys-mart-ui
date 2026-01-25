@@ -4,7 +4,7 @@ import ProductListings from "./ProductListings.jsx";
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <div className="max-w-[1152px] mx-auto px-6 py-8">
       <PageHeading title="Enjoy your own collection!">
         This is the place where your love of movies, games, comics, and anime
         takes tangible form. We find, select, and bring the best figurines,
