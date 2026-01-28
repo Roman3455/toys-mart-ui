@@ -1,6 +1,7 @@
 import products from "../data/products.js";
 import PageHeading from "./PageHeading.jsx";
 import ProductListings from "./ProductListings.jsx";
+import apiClient from "../api/apiClient.js";
 
 const Home = () => {
   return (
