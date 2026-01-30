@@ -14,12 +14,12 @@ const ProductListings = ({products}) => {
       return [];
     }
 
-    let filtereProducts = products.filter((product) =>
+    let filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes(searchText.toLowerCase()) ||
       product.description.toLowerCase().includes(searchText.toLowerCase())
     );
 
-    return filtereProducts.slice().sort((a, b) => {
+    return filteredProducts.slice().sort((a, b) => {
       switch (selectedSort) {
         case "Price Low to High":
           return parseFloat(a.price) - parseFloat(b.price);
