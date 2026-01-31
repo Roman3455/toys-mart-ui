@@ -1,16 +1,21 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faShoppingBasket, faTags, faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 const Header = () => {
-  const [theme, setTheme] = useState("light")
-  const toggleTheme = () => setTheme((prevTheme) => {
-    const newTheme = prevTheme === "light" ? "dark" : "light";
-    if (newTheme === "dark") {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+  });
+  useEffect(() => {
+    if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+  }, [theme]);
+  const toggleTheme = () => setTheme((prevTheme) => {
+    const newTheme = prevTheme === "light" ? "dark" : "light";
+    localStorage.setItem("theme", newTheme);
     return newTheme;
   });
   const navLinkClass = "text-center text-lg font-primary font-semibold text-primary py-2 dark:text-light hover:text-dark dark:hover:text-lighter";
