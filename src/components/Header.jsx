@@ -22,7 +22,7 @@ const Header = () => {
   const navLinkClass = "text-center text-lg font-primary font-semibold text-primary py-2 dark:text-light hover:text-dark dark:hover:text-lighter";
   return (
     <header className="border-b border-gray-300 dark:border-gray-600 sticky top-0 z-20 bg-normalbg dark:bg-darkbg">
-      <div className="flex items-center justify-between mx-auto max-w-[1152px] px-6 py-4">
+      <div className="flex items-center justify-between mx-auto max-w-6xl px-6 py-4">
         <Link
           to="/"
           className={navLinkClass}

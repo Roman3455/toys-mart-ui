@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from "react";
+import {useState, useMemo} from "react";
 import ProductCard from "./ProductCard.jsx";
 import SearchBox from "./SearchBox.jsx";
 import Dropdown from "./Dropdown.jsx";
@@ -6,8 +6,8 @@ import Dropdown from "./Dropdown.jsx";
 const sortList = ["Popularity", "Price Low to High", "Price High to Low"];
 
 const ProductListings = ({products}) => {
-  const [searchText, setSearchText] = React.useState("");
-  const [selectedSort, setSelectedSort] = React.useState("Popularity");
+  const [searchText, setSearchText] = useState("");
+  const [selectedSort, setSelectedSort] = useState("Popularity");
 
   const filteredAdnSortedProducts = useMemo(() => {
     if (!Array.isArray(products)) {
