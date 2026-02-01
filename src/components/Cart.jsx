@@ -1,13 +1,11 @@
 import {useNavigate} from "react-router-dom";
-import {Link} from "react-router-dom";
 import PageTitle from "./PageTitle.jsx";
 import emptyCartImage from "../assets/util/emptycart.png";
 
-const Cart = () => {
+export default function Cart() {
   const navigation = useNavigate();
-
   const handleClick = () => {
-    navigation("/home", {state: {username: "madan"}});
+    navigation("/home");
   };
 
   return (
@@ -34,5 +32,3 @@ const Cart = () => {
     </div>
   );
 }
-
-export default Cart;
