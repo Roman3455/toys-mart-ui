@@ -8,6 +8,7 @@ import Login from "./components/Login.jsx";
 import Cart from "./components/Cart.jsx";
 import Home from "./components/Home.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
+import {productsLoader} from "./components/Home.jsx";
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 
 const routeDefinitions = createRoutesFromElements(
@@ -19,10 +20,12 @@ const routeDefinitions = createRoutesFromElements(
     <Route
       index
       element={<Home />}
+      loader={productsLoader}
     />
     <Route
       path="/home"
       element={<Home />}
+      loader={productsLoader}
     />
     <Route
       path="/about"
