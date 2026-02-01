@@ -3,12 +3,12 @@ import Footer from "./Footer";
 import PageTitle from "./PageTitle";
 import {Link} from "react-router-dom";
 import {useRouteError} from "react-router-dom";
+import errorImage from "../assets/util/error.png";
 
 const ErrorPage = () => {
   const routeError = useRouteError();
   let errorTitle = "Oops! Something went wrong";
   let errorMessage = "An unexpected error occurred. Please try again later.";
-  const errorImage = "../assets/util/error.png";
   if (routeError) {
     errorTitle = routeError.status;
     errorMessage = routeError.data;
