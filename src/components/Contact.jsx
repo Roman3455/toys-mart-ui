@@ -2,8 +2,8 @@ import {Form, useActionData, useNavigation, useSubmit} from "react-router-dom";
 import {useEffect, useRef} from "react";
 import PageTitle from "./PageTitle.jsx";
 import apiClient from "../api/apiClient.js";
-// import { toast } from "react-toastify";
-import { redirect } from "react-router-dom";
+import { toast } from "react-toastify";
+// import {redirect} from "react-router-dom";
 
 const Contact = () => {
   const actionData = useActionData();
@@ -26,7 +26,7 @@ const Contact = () => {
 
     if (userConfirmed) {
       const formData = new FormData(formRef.current); // Get form data
-      submit(formData, { method: "post" }); // Proceed with form submission
+      submit(formData, {method: "post"}); // Proceed with form submission
     } else {
       toast.info("Form submission cancelled.");
     }
@@ -53,7 +53,10 @@ const Contact = () => {
       >
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className={labelStyle}>
+          <label
+            htmlFor="name"
+            className={labelStyle}
+          >
             Name
           </label>
           <input
@@ -72,7 +75,10 @@ const Contact = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Email Field */}
           <div>
-            <label htmlFor="email" className={labelStyle}>
+            <label
+              htmlFor="email"
+              className={labelStyle}
+            >
               Email
             </label>
             <input
@@ -87,7 +93,10 @@ const Contact = () => {
 
           {/* Mobile Field */}
           <div>
-            <label htmlFor="mobileNumber" className={labelStyle}>
+            <label
+              htmlFor="mobileNumber"
+              className={labelStyle}
+            >
               Mobile Number
             </label>
             <input
@@ -105,7 +114,10 @@ const Contact = () => {
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className={labelStyle}>
+          <label
+            htmlFor="message"
+            className={labelStyle}
+          >
             Message
           </label>
           <textarea
@@ -135,7 +147,9 @@ const Contact = () => {
   );
 }
 
-export async function contactAction({ request, params }) {
+export default Contact;
+
+export async function contactAction({request, params}) {
   const data = await request.formData();
 
   const contactData = {
@@ -146,14 +160,12 @@ export async function contactAction({ request, params }) {
   };
   try {
     await apiClient.post("/contacts", contactData);
-    return { success: true };
+    return {success: true};
     // return redirect("/home");
   } catch (error) {
     throw new Response(
       error.message || "Failed to submit your message. Please try again.",
-      { status: error.status || 500 }
+      {status: error.status || 500}
     );
   }
 }
-
-export default Contact;
