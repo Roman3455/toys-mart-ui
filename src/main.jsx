@@ -9,6 +9,7 @@ import Contact, {contactAction} from "./components/Contact.jsx";
 import Login from "./components/Login.jsx";
 import Cart from "./components/Cart.jsx";
 import Home from "./components/Home.jsx";
+import ProductDetail from "./components/ProductDetail.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import {productsLoader} from "./components/Home.jsx";
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
@@ -45,6 +46,10 @@ const routeDefinitions = createRoutesFromElements(
     <Route
       path="/cart"
       element={<Cart />}
+    />
+    <Route
+      path="/products/:productId"
+      element={<ProductDetail />}
     />
   </Route>
 );
