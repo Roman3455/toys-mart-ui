@@ -2,7 +2,7 @@ import {Form, useActionData, useNavigation, useSubmit} from "react-router-dom";
 import {useEffect, useRef} from "react";
 import PageTitle from "./PageTitle.jsx";
 import apiClient from "../api/apiClient.js";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 // import {redirect} from "react-router-dom";
 
 const Contact = () => {
@@ -164,7 +164,9 @@ export async function contactAction({request, params}) {
     // return redirect("/home");
   } catch (error) {
     throw new Response(
-      error.message || "Failed to submit your message. Please try again.",
+      error.response?.data?.errorMessage
+      || error.message
+      || "Failed to submit your message. Please try again.",
       {status: error.status || 500}
     );
   }
