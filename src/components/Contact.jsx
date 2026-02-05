@@ -69,6 +69,11 @@ const Contact = () => {
             minLength={5}
             maxLength={30}
           />
+          {actionData?.errors?.name && (
+            <p className="text-red-500 text-sm mt-1">
+              {actionData.errors.name}
+            </p>
+          )}
         </div>
 
         {/* Email and mobile Row */}
@@ -89,6 +94,11 @@ const Contact = () => {
               className={textFieldStyle}
               required
             />
+            {actionData?.errors?.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {actionData.errors.email}
+              </p>
+            )}
           </div>
 
           {/* Mobile Field */}
@@ -109,6 +119,11 @@ const Contact = () => {
               placeholder="Your Mobile Number"
               className={textFieldStyle}
             />
+            {actionData?.errors?.mobileNumber && (
+              <p className="text-red-500 text-sm mt-1">
+                {actionData.errors.mobileNumber}
+              </p>
+            )}
           </div>
         </div>
 
@@ -130,6 +145,11 @@ const Contact = () => {
             minLength={5}
             maxLength={500}
           ></textarea>
+          {actionData?.errors?.message && (
+            <p className="text-red-500 text-sm mt-1">
+              {actionData.errors.message}
+            </p>
+          )}
         </div>
 
         {/* Submit Button */}
@@ -151,18 +171,21 @@ export default Contact;
 
 export async function contactAction({request, params}) {
   const data = await request.formData();
-
   const contactData = {
     name: data.get("name"),
     email: data.get("email"),
     mobileNumber: data.get("mobileNumber"),
     message: data.get("message"),
   };
+
   try {
     await apiClient.post("/contacts", contactData);
     return {success: true};
     // return redirect("/home");
   } catch (error) {
+    if (error.response?.status === 400) {
+      return { success: false, errors: error.response?.data };
+    }
     throw new Response(
       error.response?.data?.errorMessage
       || error.message
