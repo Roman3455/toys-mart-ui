@@ -1,4 +1,4 @@
-import {StrictMode} from 'react'
+import {createContext, StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -13,6 +13,7 @@ import ProductDetail from "./components/ProductDetail.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import {productsLoader} from "./components/Home.jsx";
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
+import {CartContext} from "./store/cart-context.jsx";
 
 const routeDefinitions = createRoutesFromElements(
   <Route
@@ -55,10 +56,19 @@ const routeDefinitions = createRoutesFromElements(
 );
 
 const appRouter = createBrowserRouter(routeDefinitions);
+const initialCartContext = {
+  cart: [],
+  setCart: () => {},
+  addToCart: () => {},
+  removeFromCart: () => {},
+  totalQuantity: 0,
+}
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={appRouter} />
+    <CartContext value={initialCartContext}>
+      <RouterProvider router={appRouter} />
+    </CartContext>
     <ToastContainer
       position="top-center"
       autoClose={3000}
