@@ -13,7 +13,7 @@ import ProductDetail from "./components/ProductDetail.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import {productsLoader} from "./components/Home.jsx";
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
-import {CartContext} from "./store/cart-context.jsx";
+import {CartProvider} from "./store/cart-context.jsx";
 
 const routeDefinitions = createRoutesFromElements(
   <Route
@@ -56,19 +56,13 @@ const routeDefinitions = createRoutesFromElements(
 );
 
 const appRouter = createBrowserRouter(routeDefinitions);
-const initialCartContext = {
-  cart: [],
-  setCart: () => {},
-  addToCart: () => {},
-  removeFromCart: () => {},
-  totalQuantity: 0,
-}
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CartContext value={initialCartContext}>
+    <CartProvider>
       <RouterProvider router={appRouter} />
-    </CartContext>
+    </CartProvider>
     <ToastContainer
       position="top-center"
       autoClose={3000}
