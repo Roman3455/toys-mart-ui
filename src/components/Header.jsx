@@ -1,12 +1,14 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faShoppingBasket, faTags, faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {Link, NavLink} from "react-router-dom";
+import {CartContext} from "../store/cart-context.jsx";
 
 const Header = () => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   });
+  const {totalQuantity} = useContext(CartContext);
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -88,12 +90,15 @@ const Header = () => {
             <li>
               <Link
                 to="/cart"
-                className="text-primary py-2"
+                className="relative text-primary py-2"
               >
                 <FontAwesomeIcon
                   icon={faShoppingBasket}
-                  className="dark:text-light"
+                  className="text-primary dark:text-light w-6"
                 />
+                <div className="absolute -top-2 -right-6 text-xs bg-yellow-400 text-black font-semibold rounded-full px-2 py-1 leading-none">
+                  {totalQuantity}
+                </div>
               </Link>
             </li>
           </ul>
